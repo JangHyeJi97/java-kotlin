@@ -1,0 +1,54 @@
+legend {text-align:center; font-weight:bold;}
+
+.general {
+	width:350px; height:100px;
+	background-color:#efefef;
+	border:solid #c1c1c1 3px;
+	border-top-style:none;
+	border-left-style:none;
+	float:left;
+	padding:10px;
+}
+
+.business {
+	width:350px; height:100px;
+	background-color:#e1fffe;
+	border:solid #43dafa 3px;
+	border-top-style:none;
+	border-left-style:none;
+	float:left;
+	padding:10px;
+	margin-left:10px;
+}
+
+.log11 {
+	float:left;
+}
+
+.log12 {
+	float:left;
+	margin:5px;
+}
+
+.log21 {
+	float:left;
+}
+
+.log22 {
+	float:left;
+	margin:5px;
+}
+
+.bt1 { 
+	width:90px; height:55px;
+	float:right;
+	background-color:#c1c1c1;
+	border:0;
+}
+
+.bt2 { 
+	width:90px; height:55px;
+	float:right;
+	background-color:#43dafa;
+	border:0;
+}

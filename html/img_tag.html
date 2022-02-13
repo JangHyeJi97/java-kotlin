@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>Document</title>
+</head>
+<body>
+<!--
+img태그 : image. 이미지를 html 문서에서 보여주는 태그
+ - 닫는 태그가 없으며, 인라인요소이나 자리가 모자르면 다음줄로 내려감
+ - src="경로 및 이미지 파일명" : img태그의 필수 속성으로 보여줄 이미지의 위치와 파일명
+ - width="픽셀값 or 백분율" : 이미지의 너비로 백분율은 브라우저를 기준으로 함
+ - height="픽셀값 or 백분율" : 이미지의 높이로 백분율은 브라우저를 기준으로 함
+ 	width와 height 속성을 둘 다 사용하지 않으면 이미지는 원본의 크기대로 보여짐
+	width나 height 중 하나만 사용하면 나머지 크기는 자동으로 비율에 맞춰 변경됨
+	보통 둘 중 width 속성값을 조절하고 height는 거기에 맞춰서 변경됨
+ - border="정수" : 이미지의 테두리선 두께로 일반적으로 0으로 지정한 후 사용
+ - alt="대체 텍스트" : 이미지가 안보일 경우 대신 보여줄 텍스트
+ 	주로 메뉴나 제목같이 글자로 보이는 이미지에 많이 사용됨
+ - title="텍스트" : 이미지에 마우스 오버 시 툴팁으로 보여줄 메시지(보통 메뉴등에 대한 설명글에서 사용)
+ - usemap="#맵이름" : 현 이미지를 이미지 맵 기능으로 사용하겠다는 의미 
+
+이미지 맵 : 이미지의 특정 부분에만 링크를 걸어주는 기능
+map 태그 : 이미지 맵 기능을 구현하여 링크를 거는  태그
+ - id="맵이름" : 링크를 걸 이미지의 usemap속성에서 지정한 맵의 이름과 동일하게 입력해야 함
+ - name="맵이름" : IE는 필요없으나 크롬에서는 필요한 속성
+
+area태그 : map 태그 내부에서만 사용되는 태그로 링크와 링크를 걸 부분을 설정하는 태그
+ - shape="rect|circle|poly" : 링크를 걸 부분에 대한 도형 모양을 지정
+ - coords="좌표값들" : shape속성에서 지정한 도형에 맞는 좌표값을 x,y순으로 지정
+ 	좌표값은 이미지의 좌상단 꼭지점을 기준으로 픽셀값으로 입력
+	shape가 rect(직사각형)인 경우 : coords="좌상단X좌표, 좌상단Y좌표, 우하단X좌표, 우하단Y좌표"
+	shape가 circle인 경우 : coords="중심점X좌표, 중심점Y좌표, 반지름"
+	shape가 Poly(다각형)인 경우 : coords="X좌표값1, Y좌표값1, X좌표값2, Y좌표값2, ... , X좌표값n, Y좌표값n"
+	 - poly인 경우 최소 삼각형에 필요한 꼭지점 3개를 위해 6개 이상의 좌표가 필요하며 반드시 짝수개로 입력해야 함
+ - href="경로 및 파일명" : 이동할 url
+ - alt="대체 텍스트" : 이미지가 안보일 경우 대신 보여줄 텍스트
+-->
+<img src="./img/1.jpg" width="300" border="2" alt="alt속성"><img src="./img/2.jpg" width="300" border="5" title="title속성">
+<br/>
+<img src="http://pics.gmarket.co.kr/mobile/single/kr/email/image__logo.png"/>
+<br/>
+<img src="img/3.jpg" width="500" usemap="#map"/>
+<map id="map" name="map">
+	<area shape="rect" coords="50, 10, 300, 160" href="p_tag.html" title="RECT" />
+</map>
+<br/><br/><br/><br/><br/><br/><br/>
+
+</body>
+</html>

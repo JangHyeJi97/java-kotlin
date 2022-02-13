@@ -1,0 +1,66 @@
+<html>
+<head>
+	<title>Document</title>
+	<style>
+	.none {list-style-type:none;}
+	.disc {list-style-type:disc;}
+	.circle {list-style-type:circle;}
+	.upperA {list-style-type:upper-alpha;}
+	.lowerA {list-style-type:lower-alpha;}
+	.upperR {list-style-type:upper-roman;}
+	.lowerR {list-style-type:lower-roman;}
+	.armenian {list-style-type:armenian;}
+	.georgian {list-style-type:georgian;}
+	.greek {list-style-type:lower-greek;}
+	/* list-style-type : 목록태그의 글머리 기호와 번호를 지정하는 속성
+	none: 기호없음 
+	disc:검은색원 / circle:빈 원 /square:검은색 사각형 
+	decimal : 1,2형식의 숫자 / deiciaml-leading-zero : 01,02형식의 숫자 
+	upper-alpha : 알파벳 대문자 / lower-alpah : 알파벳 소문자 
+	upper-roman : 로마숫자 대문자 / lower-roman : 로마숫자 소문자 
+	armenian : 아르메니안 숫자 / georgian : 조지안 숫자 / lower-greek : 그리스 숫자*/
+	
+	#list-style-position:
+	/*list-style-position : 목록의 들여쓰기와 내어쓰기를 지정하는 속성으로 기본값은 내어쓰기인 outside*/
+
+	#list3 {list-style-image:url("../img/ico.gif");}
+	/*list-style-image : 목록의 글머리 기호를 이미지로 변경 */
+	
+	.menu li{
+		background:#a1a1a1; list-style-type:none; display:inline; padding:2px 5px;
+	}
+
+	a:link {color:#fff; text-decoration:none;}
+	a:visited {color:#fff; text-decoration:none;}
+	a:hover {color:#f00; text-decoration:underline; font-weight:bold;}
+	/* hover에서 사용한 밑줄과 굵은 글씨체의 경우 링크 자체가 커지는 효과를 가지기 때문에 상황에 따라 디자인이 깨지는 현상이 발생할 수도 있으므로 사용시 주의해야 함*/
+	</style>
+</head>
+<body>
+<h2>목록태그(ul,ol)스타일</h2>
+<ul id="list">
+	<li class="none">none</li>
+	<li class="disc">disc</li>
+	<li class="circle">circle</li>
+</ul>
+<ul id="list2">
+	<li class="upperA">upperA</li>
+	<li class="lowerA">lowerA</li>
+	<li class="upperR">upperR</li>
+	<li class="lowerR">lowerR</li>
+</ul>
+<ul id="list3">
+	<li class="armenian">armenian</li>
+	<li class="geogian">geogian</li>
+	<li class="greek">greek</li>
+</ul>
+<ul id="menu">
+	<li><a href="#">로그인<a></li>
+	<li><a href="#">회원가입<a></li>
+	<li><a href="#">고객센터<a></li>
+	<li><a href="#">사이트맵<a></li>
+</ul>
+
+
+</body>
+</html>

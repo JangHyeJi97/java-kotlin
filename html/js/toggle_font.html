@@ -1,0 +1,36 @@
+<html>
+<head>
+   <title>Document</title>
+   <style>
+   #txt { font-size:30px; font-w
+   </style>
+   <script>
+   /*
+   1. '내용변경' 버튼 클릭시 Hello!!를 <em>'Good Bye!!</em>'로 변경하고, 다시 클릭하면 원래대로 돌아옴
+   2. '색상변경' 버튼 클릭시 누를때만 색상을 black, red, orange, yellow, green, blue, navy, purple로 변경시킴
+   */
+   var flag = true;  //내용 변경시 사용할 전역변수
+   //두가지 상태를 번갈아 가면서 사용하려면 논리값을 변수로 지정한 후 사용하는 경우가 많음
+   var colorCnt = 0;  //색상 변경시 사용할 전역변수
+   //두가지 초과하는 상태를 반복적으로 사용하려면 1씩 증가하는 변수를 %연산으로 나머지를 구하여 사용하면 됨
+   function change(kind) {
+      var txt = document.getElementById("txt");
+
+      if (kind == "content") {
+         flag = !flag;
+          if (flag)  txt.innerHTML = "Hello!!";
+          else       txt.innerHTML = "<em>Good Bye!!</em>";
+      } else { 
+         colorCnt++;
+         var arrColor = ["black", "red", "orange", "yellow", "green", "blue", "navy", "purple"];
+         txt.style.color = arrColor[colorCnt % 8];
+      }
+   }
+   </script>
+</head>
+<body>
+<p id="txt">Hello!!</p>
+<input type="button" value="내용변경" onclick="change('content');" />
+<input type="button" value="색상변경" onclick="change('color');" />
+</body>
+</html>
