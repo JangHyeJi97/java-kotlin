@@ -1,0 +1,68 @@
+<html>
+<head>
+	<title>Document</title>
+</head>
+<body>
+<script>
+var br = "<br />";
+var str1 = "010-1234-5678";	var str2 = "011-123-5678";
+var str3 = "016-123-5678";	var str4 = "019-123-5678";
+
+function getTele(phone) {
+// 전화번호를 이용하여 통신사를 리턴하는 함수 - 010 : 몰라, 011 : SKT, 016 : KTF, 019 : LGT
+	var tel = "";	// 통신사를 저장할 변수
+/*
+	var tmp = phone.substring(0, 3);
+	if (tmp == "010")		tel = "몰라";
+	else if (tmp == "011")	tel = "SKT";
+	else if (tmp == "016")	tel = "KTF";
+	else if (tmp == "019")	tel = "LGT";
+*/
+	var arr = phone.split("-");
+	if (arr[0] == "010")		tel = "몰라";
+	else if (arr[0] == "011")	tel = "SKT";
+	else if (arr[0] == "016")	tel = "KTF";
+	else if (arr[0] == "019")	tel = "LGT";
+
+	return tel;
+}
+
+document.write(str1 + "의 통신사는 " + getTele(str1) + br);
+document.write(str2 + "의 통신사는 " + getTele(str2) + br);
+document.write(str3 + "의 통신사는 " + getTele(str3) + br);
+document.write(str4 + "의 통신사는 " + getTele(str4) + br);
+document.write("<hr />");
+
+
+// 아이디 검사 : 영문, 숫자, 언더바 만으로 조합하며, 첫글자는 반드시 영문으로 총 4~20자 사이로 입력해야 함
+function idTest(id) {
+// 받아온 id를 검사하여 아이디에 적합한지를 리턴하는 함수(??? : 적합 / ??? : 부적합)
+}
+
+str1 = "abc가나다";	str2 = "1test";		str3 = "a1234";		str4 = "ab_cd";
+
+document.write(idTest(str1) + br);	document.write(idTest(str2) + br);
+document.write(idTest(str3) + br);	document.write(idTest(str4) + br);
+document.write("<hr />");
+
+
+// 파일 검사 : 입력된 파일이 이미지 파일인지 여부를 검사하여 문자열 출력
+var arrImg = ["jpg", "gif", "png", "jpeg"];
+function imgFile(str) {
+// 받아온 str 안에 있는 파일명이 이미지파일이면 '이미지 파일입니다.'를 아니면 '이미지 파일이 아닙니다.'를 리턴하는 함수
+}
+
+var file1 = "a.jpg", file2 = "b.doc", file3 = "c.xls", file4 = "d.ppt";
+var file5 = "e.png", file6 = "f.gif", file7 = "g.hwp", file8 = "h.jpeg";
+var file9 = "i.docx", file10 = "j.xlsx", file11 = "k.zip", file12 = "l.dll";
+// file1 부터 file12 까지의 파일명을 이용하여 이미지 파일인지 여부를 출력
+// 예) 'a.jpg'는 이미지 파일입니다.
+
+document.write("'" + file1 + "'는 " + imgFile(file1));
+document.write("'" + file3 + "'는 " + imgFile(file3));
+document.write("'" + file5 + "'는 " + imgFile(file5));
+document.write("'" + file7 + "'는 " + imgFile(file7));
+document.write("'" + file9 + "'는 " + imgFile(file9));
+</script>
+</body>
+</html>

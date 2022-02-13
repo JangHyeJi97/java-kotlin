@@ -1,0 +1,82 @@
+<html>
+<head>
+	<title>Document</title>
+	<script>
+	function chkAll(all) {
+		var arrchk = document.frmCart.chk;
+		//chk라는 이름의 컨트롤들을 arrChk 배열로 받음
+		for (var i = 0 ; i < arrChk.length ; i++) {
+			arrChk[i].checked = all.checked;
+		}
+	}
+	function choose(chk) {
+		if (!chk.checked) {//현재 체크박스의 체크가 풀렸으면
+			document.frmCart.all.checked = false;
+		}
+	} 
+	function chkVal(frm){
+		var chk = frm.chk;	//상품들을 의미하는 체크박스 배열
+		var pay = frm.payment;	//결제방법들을 의미하는 라디오버튼 배열
+		var ischk = false; // 선택되었는지 여부를 저장할 변수
+
+		for (var i = 0 ; i < chk.length ; i++) {
+			if (chk[i].checked) {
+			//i인덱스에 해당하는 체크박스가 체크되어 있으면
+				ischk = true;	break;
+			}
+		}
+		if (ischk) { //상품들중 하나라도 체크되었으면
+			for (var i = 0 ; i < pay.length ; i++ ) {
+				if (pay[i].checked)		return true;
+				//결제 방법 중 하나라도 체크했으면
+			}
+			alert("결제 방법 중 하나를 선택하세요.");
+		} else {
+			alert("상품들 중 최소 하나는 선택해야 합니다.");
+		}
+		return false;
+	}
+	</script>
+</head>
+<body>
+<form name="frmCart" method="post" onsubmit="return chkVal(this);">
+<table width="600" cellpadding="5">
+<tr>
+<th width="5%"><input type="checkbox" name="all" onclick="chkAll(this);"/></th>
+<th width="20%">상품분류</th><th width="*">상품명</th><td width="10%">가격</th>
+</tr>
+<tr align="center">
+<td><input type="checkbox" name="chk" value="1" onclick="choose(this);"/></td>
+<td>운동화</td><td>좋은 운동화1</td><td>150000</td>
+</tr>
+<tr align="center">
+<td><input type="checkbox" name="chk" value="1" onclick="choose(this);"/></td>
+<td>운동화</td><td>좋은 운동화2</td><td>150000</td>
+</tr>
+<tr align="center">
+<td><input type="checkbox" name="chk" value="1" onclick="choose(this);"/></td>
+<td>운동화</td><td>좋은 운동화3</td><td>150000</td>
+</tr>
+<tr align="center">
+<td><input type="checkbox" name="chk" value="1" onclick="choose(this);"/></td>
+<td>운동화</td><td>좋은 구두1</td><td>150000</td>
+</tr>
+<tr align="center">
+<td><input type="checkbox" name="chk" value="1" onclick="choose(this);"/></td>
+<td>운동화</td><td>좋은 구두2</td><td>150000</td>
+</tr>
+<tr align="center">
+<td colspan="2">결제 방법</td>
+<td colspan="2">
+	<input type="radio" name="payment" value="c"/>카드 결제 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="radio" name="payment" value="m"/>휴대폰 결제 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="radio" name="payment" value="a"/>무통장 결제 
+</td>
+</tr>
+<tr align="center"><td colspan="4">
+	<input type="submit" value="결제 하기"/>
+</td></tr>
+<table>
+</form>
+</body>
+</html>
