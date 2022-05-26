@@ -1,0 +1,192 @@
+제네릭(Generic)
+ - 지네릭이라고도 하며, jdk1.5에서 추가된 기능으로 초기에는 선택적으로 사용했으나 점점 필수요소로 사용되는 기능
+ - 제네릭은 object등의 상위클래스로 많은 종류의 데이터를 받을때 필요없는 데이터까지 들어오지 못하게 받을 데이터의 자료형을 지정하는 기능
+ 
+
+컬렉션 프레임웍(Collection Framework)
+ - java.util 패키지에 들어있음
+ - 컬렉션 프레임웍에는 List, Set, Map의 세종류(인터페이스)가 존재
+ 	이중 List와 Set은 따로 묶어 컬렉션이라고 함(Collection 인터페이스를 상속받음)
+ - 배열과 비슷하게 여러 데이터를 저장할 수 있으며, 배열과 다르게 많은 기능을 갖추고 있는 클래스들
+ 	단, 배열에 비해 속도가 느리므로 아주 많은 양의 데이터를 처리할 경우 컬렉션 사용을 고민해 봐야 함
+	배열은 생성시 크기를 알고 있어야 하며, 그 크기를 조절할 수 없으나 컬렉션은 가능함
+	속도가 배열에 비해 느리나 충분히 사용할 수 있을 정도임(남발하는것은 자제)
+ - 예전의 Vector, Hashtable, Properties 등의 여러 데이터를 저장하는 클래스들을 새롭게 정비하여 표준화한것을 컬렉션 프레임웍이라고 함
+ - 컬렉션 프레임웍의 클래스들이 저장하는 데이터의 자료형은 Object임
+ 	단, 모두 제네릭을 사용하여 저장될 자료형(클래스)을 지정할 수 있음
+
+
+
+1.Collection 인터페이스
+ - List와 Set의 상위인터페이스로 두 인터페이스에서 상속을 받아 사용하고 있으므로 두 인터페이스가 동일한 기능을 가짐
+ 	Map은 Collection 인터페이스를 상속받지 않음
+ - 컬렉션 클래스들에서 사용하게 될 기본적인 기능(데이터 저장, 참조, 추가, 삭제 등)들의 메소드를 선언한 인터페이스
+ - Interface Collection<E> : 제네릭을 지정함으로써 해당 컬렉션에 저장할 데이터의 자료형을 강제 할 수 있음
+ - 주요 메소드
+리턴타입      메소드명 및 설명
+boolean      add(E e) : 제네릭으로 지정한 자료형의 데이터를 컬렉션의 맨 뒤에 추가한 후 성공여부 리턴
+boolean      addAll(Collection<? extends E> c) : E를 상속받은 데이터들이 들어있는 컬렉션 c를 추가
+void      clear() : 해당 컬렉션의 모든 데이터를 삭제
+boolean      contains(Object o) : 컬렉션에 지정한 데이터 o가 있는지 여부를 리턴
+boolean      containsAll(Collection<?> c) : 컬렉션에 지정한 컬렉션 c의 데이터가 모두 있는지 여부를 리턴
+boolean      equals(Object o) : 동일한 컬렉션인지 여부를 리턴
+int         hashCode() : 컬렉션의 해쉬코드(주소값으로 JVM에서 다른 컬렉션과의 구분을 위해 사용) 리턴
+boolean      isEmpty() : 컬렉션이 비어 있는지 여부
+Iterator<E>   iterator() : 컬렉션의 iterator를 리턴
+boolean      remove(Object o) : 컬렉션에서 지정한 데이터 o를 삭제한 후 성공여부 리턴
+boolean      removeAll(Collection<?> c) : 컬렉션에서 지정한 컬렉션 c의 데이터들을 삭제 후 성공여부 리턴
+boolean      retainAll(Collection<?> c) : 컬렉션에서 지정한 컬렉션 c의 데이터들만 남기고 모두 삭제
+int         size() : 컬렉션에 저장된 데이터의 개수
+Object[]   toArray() : 컬렉션을 Object배열로 리턴
+<T> T[]      toArray(T[] a) : 컬렉션을 지정한 T형 배열 a에 저장
+
+2.List인터페이스
+ - Collection 인터페이스를 상속받음
+ - 입력 순서를 유지하는 데이터의 집합으로 데이터 중복을 허용함
+ - 구현 클래스 : ArrayList, LinkedList, Stack, Vector 등이 있음
+ - Interface List<E> : 제네릭을 시정함으로써 해당 리스트에 저장할 데이터의 자료형을 강제할 수 있음
+ - 주요 메소드 : Collection 인터페이스의 메소드들은 생략
+void      add(int index, E element) : 리스트의 index위치에 element를 추가
+boolean      addAll(int index, Collection<? extends E> c)
+ : 리스트의 index위치에 E를 상속받은 데이터들이 들어있는 컬렉션 c를 추가
+E         get(int index) : 리스트의 index위치에 있는 데이터를 제네릭으로 지정한 자료형으로 리턴
+int         indexOf(Object o) : 리스트에서 지정한 데이터 o의 위치 인덱스를 리턴(없으면 -1 리턴)
+int         lastIndexOf(Object o) : indexOf()와 비슷하나 뒤에서 부터 찾기 시작
+ListIterator<E>   listIterator() : 리스트 전용 Iterator 리턴
+E         remove(int index) : 리스트에서 지정한 index에 있는 데이터를 삭제 후 해당 데이터를 리턴
+E         set(int index, E element) : 리스트의 index위치에 element를 저장하면서 기존 데이터는 삭제
+List<E>      subList(int fromIndex, int toIndex)
+ : 리스트를 fromIndex 부터 toIndex - 1 까지 잘라내어 리스트로 리턴
+
+2-1. ArratList 클래스
+ - 컬렉션 프레임웍의 클래스들 중 가장 많이 사용하는 클래스로 기존의 Vector를 개선한 클래스
+ - List 인터페이스를 implements 한 클래스로 Collection과 List의 메소드들을 구현해 놓은 클래스
+ - 생성자
+ArrayList() : 기본 크기(10)로 ArrayList 생성
+ArrayList(Collection<? extends E> c) : E를 상속받은 데이터로 만든 컬렉션 c로 ArrayList 생성
+ - Collection을 상속 또는 구현하는 다른 객체(LinkedList, Vector, Set 종류)들로 ArrayList 생성가능
+ArrayList(int initialCapacity) : 지정한 initialCapacity를 크기로 하는 ArrayList 생성
+
+ - 주요 메소드 : Collection 인터페이스와 List 인터페이스의 메소드들은 생략
+리턴타입   메소드명 및 설명
+Object   clone() : 해당 ArrayList 복제하여 리턴
+void   ensureCapacity(int minCapacity) : ArrayList의 최소용량을 지정한 minCapacity로 설정
+void   trimToSize() : 용량을 크기에 맞게 줄여줌(빈 칸을 없애는 것으로 ArrayList에 모두 저장한 후 사용)
+
+2-2. LinkedList클래스
+ - 불연속인 데이터를 연결하여 여러 데이터를 저장하는 기능
+ - List 인터페이스를 implement 한 클래스로 Collection과 List의 메소드들을 구현해 놓은 클래스
+ - 생성자
+LinkedList() : 인스턴스 생성
+LinkedList(Collection<? extends E> c) : E를 상속받은 데이터로 만든 컬렉션 c로 LinkedList 생성
+ - 주요 메소드 : Collection 인터페이스와 List 인터페이스의 메소드들은 생략
+리턴타입      메소드명 및 설명
+void      addFirst(E e) : 지정한 데이터 e를 리스트의 맨 앞에 추가
+void      addLast(E e) : 지정한 데이터 e를 리스트의 맨 뒤에 추가
+Iterator<E>   descendingIterator() : 내림차순으로 조회하기 위한 Iterator 리턴
+E         element() : 리스트의 첫번째 요소를 리턴
+E         getFirst() : 리스트의 첫번째 요소를 리턴
+E         getLast() : 리스트의 마지막 요소를 리턴
+boolean      offer(E e) : 지정한 데이터 e를 리스트의 맨 뒤에 추가
+boolean      offerFirst(E e) : 지정한 데이터 e를 리스트의 맨 앞에 추가
+boolean      offerLast(E e) : 지정한 데이터 e를 리스트의 맨 뒤에 추가
+E         peek() : 첫번째 데이터 리턴
+E         peekFirst() : 첫번째 데이터 리턴
+E         peekLast() : 마지막 데이터 리턴
+E         poll() : 첫번째 데이터를 리턴하고 리스트에서 제거
+E         pollFirst() : 첫번째 데이터를 리턴하고 리스트에서 제거
+E         pollLast() : 마지막 데이터를 리턴하고 리스트에서 제거
+E         pop() : 첫번째 데이터를 리턴하고 리스트에서 제거
+void      push(E e) : addFirst()와 동일
+E         remove() : 첫번째 데이터를 리턴하고 리스트에서 제거
+E         removeFirst() : 첫번째 데이터를 리턴하고 리스트에서 제거
+boolean      removeFirstOccurrence(Object o) : 지정한 데이터 o와 처음으로 일치하는 데이터를 삭제
+E         removeLast() : 마지막 데이터를 리턴하고 리스트에서 제거
+boolean      removeLastOccurrence(Object o) : 지정한 데이터 o와 마지막으로 일치하는 데이터를 삭제
+ - jdk1.5와 1.6에서 큐와 관련된 인터페이스(Queue, Deque)를 implements 해서 메소드가 많음
+ - 순차적인 작업에서는 ArrayList가 빠르며, 비순차적인 작업은 LinkedList가 빠름
+   단, 실제 작업시 대부분 순차적인 작업이 많이 이루어지므로 ArrayList를 사용하는 경우가 더 많음
+   데이터가 많아질수록 LinkedList는 접근성이 떨어짐
+
+2-3. Stack 클래스
+ - List 인터페이스를 implements한 Vector 클래스를 상속받은 클래스
+ - 마지막에 넣은 데이터가 가장 먼저 추출되는 형식의 저장공간을 의미
+ 	LIFO(Last In First Out)의 특징을 가지는 저장공간으로 웹브라우저의 '뒤로가기' 같은 기능에서 사용됨
+ - 생성자
+Stack() : 빈 스택 메모리 생성
+ - 주요 메소드 : Collection 인터페이스와 List 인터페이스의 메소드들은 생략
+리턴타입   메소드명 및 설명
+boolean   empty() : 스택이 비어있는지 여부를 리턴
+E      peek() : 스택에서 마지막에 저장한 데이터를 리턴하나 비었으면 EmptyStackException 발생
+E      pop() : peek()과 동일(예외까지)하나 데이터를 리턴하면서 스택에서는 삭제시킴
+E      push(E item) : 지정한 데이터 item을 스택의 맨 위에 저장
+int      search(Object o) : 스택에서 지정한 데이터 o의 위치를 리턴(1부터 시작)하며 못 찾으면 -1을 리턴
+
+2-4. Queue 인터페이스
+ - collection 인터페이스를 상속받은 인터페이스로 List 인터페이스의 기능은 사용 못함
+ - FIFO(First In First Out)의 특징을 가져 처음 넣은 데이터가 가장 먼저 추출됨
+ - 인터페이스이므로 인스턴스 생성이 불가하여 Queue를 상속받은 Deque 인터페이스를 implements한 LinkedList 같은 클래스를 이용하
+ 여 인스턴스를 생성해야 함
+ - 주요 메소드 : Collection 인터페이스의 메소드들은 생략
+리턴타입   메소드명 및 설명
+E      element() : 첫번째 데이터 추출
+boolean   offer(E e) : 지정한 데이터 e를 마지막 위치에 추가
+E      peek() : 첫번째 데이터 추출
+E      poll() : 첫번째 데이터 추출한 후 메모리에서 삭제, 없으면 null을 리턴
+E      remove() : 첫번째 데이터 추출한 후 메모리에서 삭제, 없으면 NoSuchElementException 예외발생
+
+3. Set 인터페이스
+ - Collection 인터페이스를 상속받음
+ - 입력순서를 유지하지 않는 데이터의 집합으로 데이터 중복을 허용하지 않음
+ - 구현 클래스 : HashSet, TreeSet 등이 있음
+
+3-1. HashSet클래스
+ - Set 인터페이스를 구현한 클래스들 중 가장 많이 사용되는 클래스
+ - 생성자
+HashSet() : 빈 HashSet 인스턴스 생성(기본 용량 : 16 / 로드 팩터 : 0.75)
+HashSet(Collection<? extends E> c) : E를 상속받는 데이터로 이루어진 컬렉션 c로 HashSet 생성
+HashSet(int initialCapacity) : 지정한 initialCapacity를 초기 용량으로 하는 HashSet 생성
+HashSet(int initialCapacity, float loadFactor)
+ : initialCapacity로 초기용량을, loadFactor로 로드팩터를 지정하여 HashSet 생성
+ - 로드팩터 : 컬렉션의 저장공간이 가득 차기 전에 미리 용량을 확보하기 위한 것으로 로드팩터로 지정한 값 만큼 채워졌을 때 용량을 두 배로 늘려줌
+   기본값은 0.75로 저장공간의 75%를 채우면 자동으로 용략이 늘어남
+ - 메소드는 거의 Colleciton 인터페이스의 메소드들을 구현해 놓은 것들임
+
+
+4. Map 인터페이스
+ - 컬렉션 프레임웍에는 속하지만 List와 Set과는 다르게 Collection인터페이스를 상속받지는 않음
+ - 키(key)와 값(value)의 쌍(pair)으로 저장되는 데이터 집합
+ - 입력 순서를 유지하지 않으며, 키는 중복불가이며 값은 중복을 허용함
+ 	같은 키가 존재할 경우 나주엥 저장한 키로 덮어쓰기가 됨
+ - HashMap, TreeMap, Hashtable, Pro
+  - 주요 메소드
+리턴타입   메소드명 및 설명
+void   clear() : 맵에 저장된 모든 데이터를 삭제
+boolean   containsKey(Object key) : 지정한 key가 맵에 있는지 여부
+boolean   containsValue(Object value) : 지정한 value가 맵에 있는지 여부
+V      get(Object key) : 지정한 key에 해당하는 value를 리턴하며, null을 리턴
+V      getOrDefault(Object key, V defaultValue)
+ : get()과 같으나 key에 해당하는 value가 없으면 지정한 defaultValue를 리턴
+boolean   isEmpty() : 맵이 비어 있는지 여부를 리턴
+Set<K>   keySet() : 맵의 key들만 모아서 Set으로 생성하여 리턴 - valueSet()은 없음
+V      put(K key, V value) : 지정된 key와 value의 쌍을 저장
+void   putAll(Map<? extends K,? extends V> m)
+ : K를 상속받는 key와 V를 상속받는 value로 이루어진 맵(m)의 모든 요소를 해당 맵에 저장
+V      remove(Object key) : 지정한 key에 해당하는 값을 삭제한 후 리턴
+boolean   remove(Object key, Object value) : 지정한 key와 value에 해당하는 요소를 삭제
+V      replace(K key, V value) : 지정한 key에 해당하는 값을 지정한 value로 변경 후 리턴
+boolean   replace(K key, V oldValue, V newValue)
+ : 지정한 key와 oldValue에 해당하는 값을 newValue로 변경
+int      size() : 맵에 저장된 요소의 개수
+Collection<V> values() : 맵에 저장된 모든 요소의 값들을 컬렉션 형태로 리턴
+
+3-1. HashMap 클래스
+ - 맵들중 가장 많이 사용되는 맵으로 Map 인터페이스를 implement하고 있음
+ - 생성자
+HashMap() : 빈 HashMap 인스턴스 생성(기본 용량 : 16 / 로드 팬터 : 0.75)
+HashMap(int initialCapacity) : 지정한 initialCapacity를 초기 용량으로 하는 HashMap 생성
+HashMap(int initialCapacity, float loadFactor)
+ : initialCapacity로 초기용량을, loadFactor로 로드팩터를 지정하여 HashMap 생성
+HashMap(Map<? extends K,? extends V> m)
+ : K를 상속받는 key와 V를 상속받는 value로 이루어진 맵(m)의 모든 요소를 이용하여 HashMap 생성
+
